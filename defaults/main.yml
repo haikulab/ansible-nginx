@@ -1,0 +1,44 @@
+---
+nginx_ppa: nginx/stable
+
+# Setting this to `yes` will stop
+# installation of /etc/nginx/conf.d/default.conf
+nginx_install_default: yes
+doc_root: /usr/share/nginx/html
+default_domain: 127.0.0.1
+
+# nginx.conf
+www_user: www-data
+www_group: www-data
+
+worker_rlimit_nofile: 8192
+
+error_log: "/var/log/nginx/error.log warn"
+nginx_pid: /var/run/nginx.pid
+
+## http
+
+# How long to allow each connection to stay idle; longer values are better
+# for each individual client, particularly for SSL, but means that worker
+# connections are tied up longer. (Default: 65)
+keepalive_timeout: 25
+
+# Compression level (1-9).
+# 5 is a perfect compromise between size and cpu usage, offering about
+# 75% reduction for most ascii files (almost identical to level 9).
+gzip_comp_level: 5
+
+# restricts upload size
+client_max_body_size: 5M
+
+# h5bp-nginx
+## Because 99% of all project we make use
+## HTML5BoilerPlate settings
+
+h5bp_install: true # default: true
+
+h5bp_paths:
+  - src: h5bp
+    dest: /etc/nginx
+  - src: mime.types
+    dest: /etc/nginx

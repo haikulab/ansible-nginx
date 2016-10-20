@@ -1,0 +1,12 @@
+---
+# make sure nginx is started
+- name: start nginx
+  service: name=nginx enabled=yes state=started
+
+# restart nginx
+- name: restart nginx
+  service: name=nginx enabled=yes state=restarted
+
+# reload nginx
+- name: reload nginx
+  service: name=nginx enabled=yes state=reloaded

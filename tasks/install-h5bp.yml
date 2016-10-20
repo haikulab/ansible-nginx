@@ -1,0 +1,7 @@
+---
+
+- name: Upload H5BP configurations
+  copy: |
+    src={{ item.src }}
+    dest={{ item.dest }}
+  with_items: "{{ h5bp_paths }}"
