@@ -6,16 +6,10 @@
 
 - name: Install Nginx
   when: ppa_added | success
-  apt: pkg=nginx state=installed update_cache=true
+  apt: pkg={{ item }} state=installed update_cache=true
   register: nginx_installed
   notify: start nginx
-
-- name: Remove Apache legacy folders
-  when: nginx_installed|success
-  file: path={{ item }} state=absent
-  with_items:
-    - "/etc/nginx/sites-enabled"
-    - "/etc/nginx/sites-available"
+  with_items: "{{ ngx_packages }}"
 
 - name: Setup htdocs folder
   when: nginx_installed | success
@@ -48,5 +42,12 @@
   notify: restart nginx
 
 - name: Install HTML5 Biolerplate for Nginx
-  when: h5bp_install == true
+  when: h5bp_install == True
   include: install-h5bp.yml
+
+- name: Remove Apache folders
+  when: nginx_remove_default_site_folders == True
+  file: path={{ item }} state=absent
+  with_items:
+    - "/etc/nginx/sites-enabled"
+    - "/etc/nginx/sites-available"

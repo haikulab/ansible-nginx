@@ -1,6 +1,10 @@
 ---
 nginx_ppa: nginx/stable
 
+# Use this var to change the package being installed
+## eg. nginx-full
+ngx_packages:
+  - nginx
 # Setting this to `yes` will stop
 # installation of /etc/nginx/conf.d/default.conf
 nginx_install_default: yes
@@ -30,6 +34,9 @@ gzip_comp_level: 5
 
 # restricts upload size
 client_max_body_size: 5M
+
+# Remove site-enabled & site-available folders
+nginx_remove_default_site_folders: true
 
 # h5bp-nginx
 ## Because 99% of all project we make use
