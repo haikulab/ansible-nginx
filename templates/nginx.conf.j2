@@ -1,6 +1,9 @@
 # nginx Configuration File
 # http://wiki.nginx.org/Configuration
 
+# Load dynamic modules
+include /etc/nginx/modules-enabled/*;
+
 # Run as a less privileged user for security reasons.
 user {{ www_user|default('www-data') }};
 
