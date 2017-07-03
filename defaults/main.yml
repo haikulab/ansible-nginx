@@ -17,6 +17,12 @@ www_group: www-data
 
 worker_rlimit_nofile: 8192
 
+# nginx is smart enough to create a worker per core on the system
+# if you want a custom value, just add the number below
+## eg. nginx_worker_processes: 2
+# Note: It's a good idea to leave it as 'auto'
+nginx_worker_processes:
+
 error_log: "/var/log/nginx/error.log warn"
 nginx_pid: /var/run/nginx.pid
 
