@@ -5,6 +5,7 @@ nginx_ppa: nginx/stable
 ## eg. nginx-full
 ngx_packages:
   - nginx
+
 # Setting this to `yes` will stop
 # installation of /etc/nginx/conf.d/default.conf
 nginx_install_default: yes
@@ -21,7 +22,7 @@ worker_rlimit_nofile: 8192
 # if you want a custom value, just add the number below
 ## eg. nginx_worker_processes: 2
 # Note: It's a good idea to leave it as 'auto'
-nginx_worker_processes:
+nginx_worker_processes: auto
 
 error_log: "/var/log/nginx/error.log warn"
 nginx_pid: /var/run/nginx.pid
