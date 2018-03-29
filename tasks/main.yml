@@ -5,14 +5,14 @@
   register: ppa_added
 
 - name: Install Nginx
-  when: ppa_added | success
+  when: ppa_added is success
   apt: pkg={{ item }} state=installed update_cache=true
   register: nginx_installed
   notify: start nginx
   with_items: "{{ ngx_packages }}"
 
 - name: Setup htdocs folder
-  when: nginx_installed | success
+  when: nginx_installed is success
   file: >
     state=directory recurse=yes mode=0775
     path={{ doc_root }}
